@@ -54,7 +54,8 @@ jobs:
       - name: Push tag to origin
         run: |
           git tag $TAG
-          git push origin $TAG
+          git push https://github.com/abhissng/internal.git $TAG
         env:
           TAG: ${{ env.tag }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
