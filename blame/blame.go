@@ -22,15 +22,15 @@ type Blame[T any] interface {
 }
 
 type Error[T any] struct {
-	statusCode   string                 `json:"statusCode"`
-	errCode      string                 `json:"errCode"`
-	component    string                 `json:"component"`
-	responseType string                 `json:"responseType"`
-	message      string                 `json:"message"`
-	description  string                 `json:"description"`
-	fields       map[string]interface{} `json:"fields"`
-	causes       []error                `json:"causes"`
-	// source       string                 `json:"source"`
+	statusCode   string
+	errCode      string
+	component    string
+	responseType string
+	message      string
+	description  string
+	fields       map[string]interface{}
+	causes       []error
+	source       string
 }
 
 func NewBlame[T any](
@@ -46,7 +46,8 @@ func NewError[T any](statusCode, errorCode, message string) *Error[T] {
 		message:     message,
 		description: message,
 		fields:      map[string]interface{}{},
-		//	source:       getSource(),
+		causes:      make([]error, 0),
+		source:      getSource(),
 	}
 }
 
